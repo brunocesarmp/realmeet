@@ -12,4 +12,12 @@ public final class ResponseEntityUtils {
         return ResponseEntity.status(HttpStatus.OK).body(body);
     }
 
+    public static <T> ResponseEntity<T> created(T body) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(body);
+    }
+
+    public static ResponseEntity<Object> notFound() {
+        return ResponseEntity.notFound().build();
+    }
+
 }

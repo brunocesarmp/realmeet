@@ -8,4 +8,9 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
 
     Optional<Room> findByIdAndActiveIsTrue(Long id);
 
+<<<<<<< Updated upstream
+=======
+    Optional<Room> findByNameAndActive(String name, Boolean active);
+
+>>>>>>> Stashed changes
 }

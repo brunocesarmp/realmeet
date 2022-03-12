@@ -2,6 +2,10 @@ package br.com.sw2you.realmeet.unit;
 
 import static br.com.sw2you.realmeet.util.MapperUtils.roomMapper;
 import static br.com.sw2you.realmeet.util.TestConstants.DEFAULT_ROOM_ID;
+<<<<<<< Updated upstream
+=======
+import static br.com.sw2you.realmeet.util.TestDataCreator.newCreateRoomDto;
+>>>>>>> Stashed changes
 import static br.com.sw2you.realmeet.util.TestDataCreator.newRoomBuilder;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,4 +33,16 @@ class RoomMapperUnitTest extends BaseUnitTest {
         assertEquals(room.getSeats(), dto.getSeats());
     }
 
+<<<<<<< Updated upstream
+=======
+    @Test
+    void testFromCreateRoomDtoToEntity() {
+        var createRoomDto = newCreateRoomDto();
+        var room = victim.fromCreateRoomDtoToEntity(createRoomDto);
+
+        assertEquals(createRoomDto.getName(), room.getName());
+        assertEquals(createRoomDto.getSeats(), room.getSeats());
+    }
+
+>>>>>>> Stashed changes
 }
