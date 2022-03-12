@@ -25,13 +25,6 @@ public class RoomService {
 
     public RoomDTO getRoom(Long id) {
         requireNonNull(id);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        Room room = roomRepository.findByIdAndActiveIsTrue(id).orElseThrow(() -> new RoomNotFoundException("Room " + id + " not found"));
-        return roomMapper.fromEntityToDto(room);
-=======
-=======
->>>>>>> Stashed changes
         var room = repository
                 .findByIdAndActiveIsTrue(id)
                 .orElseThrow(() -> new RoomNotFoundException("Room not found: " + 1));
@@ -43,10 +36,6 @@ public class RoomService {
         var room = mapper.fromCreateRoomDtoToEntity(createRoomDTO);
         repository.save(room);
         return mapper.fromEntityToDto(room);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     }
 
 }

@@ -1,14 +1,7 @@
 package br.com.sw2you.realmeet.integration;
 
 import static br.com.sw2you.realmeet.util.TestConstants.DEFAULT_ROOM_ID;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
 import static br.com.sw2you.realmeet.util.TestDataCreator.newCreateRoomDto;
->>>>>>> Stashed changes
-=======
-import static br.com.sw2you.realmeet.util.TestDataCreator.newCreateRoomDto;
->>>>>>> Stashed changes
 import static br.com.sw2you.realmeet.util.TestDataCreator.newRoomBuilder;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
@@ -22,30 +15,14 @@ import org.springframework.web.client.HttpClientErrorException;
 class RoomApiIntegrationTest extends BaseIntegrationTest {
 
     @Autowired
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    private RoomApi roomApi;
-=======
     private RoomApi api;
->>>>>>> Stashed changes
-=======
-    private RoomApi api;
->>>>>>> Stashed changes
 
     @Autowired
     private RoomRepository roomRepository;
 
     @Override
     protected void setupEach() throws Exception {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        setLocalhostBasePath(roomApi.getApiClient(), "/v1");
-=======
         setLocalhostBasePath(api.getApiClient(), "/v1");
->>>>>>> Stashed changes
-=======
-        setLocalhostBasePath(api.getApiClient(), "/v1");
->>>>>>> Stashed changes
     }
 
     @Test
@@ -56,15 +33,8 @@ class RoomApiIntegrationTest extends BaseIntegrationTest {
         assertNotNull(room.getId());
         assertTrue(room.getActive());
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        var dto = roomApi.getRoom(room.getId());
-=======
         var dto = api.getRoom(room.getId());
->>>>>>> Stashed changes
-=======
-        var dto = api.getRoom(room.getId());
->>>>>>> Stashed changes
+
         assertEquals(room.getId(), dto.getId());
         assertEquals(room.getName(), dto.getName());
         assertEquals(room.getSeats(), dto.getSeats());
@@ -76,25 +46,11 @@ class RoomApiIntegrationTest extends BaseIntegrationTest {
         roomRepository.saveAndFlush(room);
 
         assertFalse(room.getActive());
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        assertThrows(HttpClientErrorException.NotFound.class, () -> roomApi.getRoom(room.getId()));
-=======
         assertThrows(HttpClientErrorException.NotFound.class, () -> api.getRoom(room.getId()));
->>>>>>> Stashed changes
-=======
-        assertThrows(HttpClientErrorException.NotFound.class, () -> api.getRoom(room.getId()));
->>>>>>> Stashed changes
     }
 
     @Test
     void testGetRoomDoesNotExist() {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        assertThrows(HttpClientErrorException.NotFound.class, () -> roomApi.getRoom(DEFAULT_ROOM_ID));
-=======
-=======
->>>>>>> Stashed changes
         assertThrows(HttpClientErrorException.NotFound.class, () -> api.getRoom(DEFAULT_ROOM_ID));
     }
 
@@ -116,10 +72,6 @@ class RoomApiIntegrationTest extends BaseIntegrationTest {
     void testCreateRoomValidationError() {
         assertThrows(HttpClientErrorException.UnprocessableEntity.class,
                 () -> api.createRoom(newCreateRoomDto().name(null)));
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     }
 
 }

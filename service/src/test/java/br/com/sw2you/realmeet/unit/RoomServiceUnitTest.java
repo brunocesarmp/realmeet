@@ -2,22 +2,11 @@ package br.com.sw2you.realmeet.unit;
 
 import static br.com.sw2you.realmeet.util.MapperUtils.roomMapper;
 import static br.com.sw2you.realmeet.util.TestConstants.DEFAULT_ROOM_ID;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-=======
-=======
->>>>>>> Stashed changes
 import static br.com.sw2you.realmeet.util.TestDataCreator.newCreateRoomDto;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,14 +17,7 @@ import br.com.sw2you.realmeet.domain.repository.RoomRepository;
 import br.com.sw2you.realmeet.exception.RoomNotFoundException;
 import br.com.sw2you.realmeet.service.RoomService;
 import br.com.sw2you.realmeet.util.TestDataCreator;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
 import br.com.sw2you.realmeet.validator.RoomValidator;
->>>>>>> Stashed changes
-=======
-import br.com.sw2you.realmeet.validator.RoomValidator;
->>>>>>> Stashed changes
 import java.util.Optional;
 
 class RoomServiceUnitTest extends BaseUnitTest {
@@ -43,16 +25,6 @@ class RoomServiceUnitTest extends BaseUnitTest {
     private RoomService victim;
 
     @Mock
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    private RoomRepository roomRepository;
-
-    @BeforeEach
-    void setupEach() {
-        victim = new RoomService(roomRepository, roomMapper());
-=======
-=======
->>>>>>> Stashed changes
     private RoomRepository repository;
 
     @Mock
@@ -61,24 +33,12 @@ class RoomServiceUnitTest extends BaseUnitTest {
     @BeforeEach
     void setupEach() {
         victim = new RoomService(repository, validator, roomMapper());
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     }
 
     @Test
     void testGetRoomWithSuccess() {
         var room = TestDataCreator.newRoomBuilder().id(DEFAULT_ROOM_ID).build();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        when(roomRepository.findByIdAndActiveIsTrue(DEFAULT_ROOM_ID)).thenReturn(Optional.of(room));
-=======
         when(repository.findByIdAndActiveIsTrue(DEFAULT_ROOM_ID)).thenReturn(Optional.of(room));
->>>>>>> Stashed changes
-=======
-        when(repository.findByIdAndActiveIsTrue(DEFAULT_ROOM_ID)).thenReturn(Optional.of(room));
->>>>>>> Stashed changes
 
         var dto = victim.getRoom(DEFAULT_ROOM_ID);
 
@@ -89,15 +49,6 @@ class RoomServiceUnitTest extends BaseUnitTest {
 
     @Test
     void testGetRoomNotFound() {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        when(roomRepository.findByIdAndActiveIsTrue(DEFAULT_ROOM_ID)).thenReturn(Optional.empty());
-        assertThrows(RoomNotFoundException.class, () -> victim.getRoom(DEFAULT_ROOM_ID));
-    }
-    
-=======
-=======
->>>>>>> Stashed changes
         when(repository.findByIdAndActiveIsTrue(DEFAULT_ROOM_ID)).thenReturn(Optional.empty());
         assertThrows(RoomNotFoundException.class, () -> victim.getRoom(DEFAULT_ROOM_ID));
     }
@@ -112,8 +63,4 @@ class RoomServiceUnitTest extends BaseUnitTest {
         verify(repository).save(any());
     }
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 }

@@ -43,4 +43,5 @@ public class RoomValidator {
                 .findByNameAndActive(name, true)
                 .ifPresent(__ -> validationErrors.add((new ValidationError(ROOM_NAME, ROOM_NAME + DUPLICATE))));
     }
+
 }

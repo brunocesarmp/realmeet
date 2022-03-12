@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import java.util.Objects;
 
 public class ValidationError {
+
     private final String field;
     private final String errorCode;
 
