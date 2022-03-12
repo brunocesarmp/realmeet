@@ -4,6 +4,10 @@ import static br.com.sw2you.realmeet.util.TestConstants.DEFAULT_ROOM_NAME;
 import static br.com.sw2you.realmeet.util.TestConstants.DEFAULT_ROOM_SEATS;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+import br.com.sw2you.realmeet.api.model.CreateRoomDTO;
+>>>>>>> Stashed changes
 =======
 import br.com.sw2you.realmeet.api.model.CreateRoomDTO;
 >>>>>>> Stashed changes
@@ -19,10 +23,16 @@ public final class TestDataCreator {
     }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     public static CreateRoomDTO newCreateRoomDto() {
         return new CreateRoomDTO().name(DEFAULT_ROOM_NAME).seats(DEFAULT_ROOM_SEATS);
     }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }

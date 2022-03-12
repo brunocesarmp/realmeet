@@ -3,6 +3,10 @@ package br.com.sw2you.realmeet.unit;
 import static br.com.sw2you.realmeet.util.MapperUtils.roomMapper;
 import static br.com.sw2you.realmeet.util.TestConstants.DEFAULT_ROOM_ID;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+import static br.com.sw2you.realmeet.util.TestDataCreator.newCreateRoomDto;
+>>>>>>> Stashed changes
 =======
 import static br.com.sw2you.realmeet.util.TestDataCreator.newCreateRoomDto;
 >>>>>>> Stashed changes
@@ -34,7 +38,10 @@ class RoomMapperUnitTest extends BaseUnitTest {
     }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     @Test
     void testFromCreateRoomDtoToEntity() {
         var createRoomDto = newCreateRoomDto();
@@ -44,5 +51,8 @@ class RoomMapperUnitTest extends BaseUnitTest {
         assertEquals(createRoomDto.getSeats(), room.getSeats());
     }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }

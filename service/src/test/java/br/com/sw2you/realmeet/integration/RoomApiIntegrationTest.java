@@ -2,6 +2,10 @@ package br.com.sw2you.realmeet.integration;
 
 import static br.com.sw2you.realmeet.util.TestConstants.DEFAULT_ROOM_ID;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+import static br.com.sw2you.realmeet.util.TestDataCreator.newCreateRoomDto;
+>>>>>>> Stashed changes
 =======
 import static br.com.sw2you.realmeet.util.TestDataCreator.newCreateRoomDto;
 >>>>>>> Stashed changes
@@ -19,7 +23,11 @@ class RoomApiIntegrationTest extends BaseIntegrationTest {
 
     @Autowired
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     private RoomApi roomApi;
+=======
+    private RoomApi api;
+>>>>>>> Stashed changes
 =======
     private RoomApi api;
 >>>>>>> Stashed changes
@@ -30,7 +38,11 @@ class RoomApiIntegrationTest extends BaseIntegrationTest {
     @Override
     protected void setupEach() throws Exception {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         setLocalhostBasePath(roomApi.getApiClient(), "/v1");
+=======
+        setLocalhostBasePath(api.getApiClient(), "/v1");
+>>>>>>> Stashed changes
 =======
         setLocalhostBasePath(api.getApiClient(), "/v1");
 >>>>>>> Stashed changes
@@ -45,7 +57,11 @@ class RoomApiIntegrationTest extends BaseIntegrationTest {
         assertTrue(room.getActive());
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         var dto = roomApi.getRoom(room.getId());
+=======
+        var dto = api.getRoom(room.getId());
+>>>>>>> Stashed changes
 =======
         var dto = api.getRoom(room.getId());
 >>>>>>> Stashed changes
@@ -61,7 +77,11 @@ class RoomApiIntegrationTest extends BaseIntegrationTest {
 
         assertFalse(room.getActive());
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         assertThrows(HttpClientErrorException.NotFound.class, () -> roomApi.getRoom(room.getId()));
+=======
+        assertThrows(HttpClientErrorException.NotFound.class, () -> api.getRoom(room.getId()));
+>>>>>>> Stashed changes
 =======
         assertThrows(HttpClientErrorException.NotFound.class, () -> api.getRoom(room.getId()));
 >>>>>>> Stashed changes
@@ -70,8 +90,11 @@ class RoomApiIntegrationTest extends BaseIntegrationTest {
     @Test
     void testGetRoomDoesNotExist() {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         assertThrows(HttpClientErrorException.NotFound.class, () -> roomApi.getRoom(DEFAULT_ROOM_ID));
 =======
+=======
+>>>>>>> Stashed changes
         assertThrows(HttpClientErrorException.NotFound.class, () -> api.getRoom(DEFAULT_ROOM_ID));
     }
 
@@ -93,6 +116,9 @@ class RoomApiIntegrationTest extends BaseIntegrationTest {
     void testCreateRoomValidationError() {
         assertThrows(HttpClientErrorException.UnprocessableEntity.class,
                 () -> api.createRoom(newCreateRoomDto().name(null)));
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
 
