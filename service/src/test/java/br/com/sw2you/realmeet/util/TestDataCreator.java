@@ -16,7 +16,7 @@ public final class TestDataCreator {
     }
 
     public static CreateRoomDTO newCreateRoomDto() {
-        return new CreateRoomDTO().name(DEFAULT_ROOM_NAME).seats(DEFAULT_ROOM_SEATS);
+        return (CreateRoomDTO) new CreateRoomDTO().name(DEFAULT_ROOM_NAME).seats(DEFAULT_ROOM_SEATS);
     }
 
 }

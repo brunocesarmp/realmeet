@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import br.com.sw2you.realmeet.api.facade.RoomApi;
+import br.com.sw2you.realmeet.api.model.CreateRoomDTO;
+import br.com.sw2you.realmeet.api.model.UpdateRoomDTO;
 import br.com.sw2you.realmeet.core.BaseIntegrationTest;
 import br.com.sw2you.realmeet.domain.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +73,7 @@ class RoomApiIntegrationTest extends BaseIntegrationTest {
     @Test
     void testCreateRoomValidationError() {
         assertThrows(HttpClientErrorException.UnprocessableEntity.class,
-                () -> api.createRoom(newCreateRoomDto().name(null)));
+                () -> api.createRoom((CreateRoomDTO) newCreateRoomDto().name(null)));
     }
 
     @Test
@@ -85,6 +87,30 @@ class RoomApiIntegrationTest extends BaseIntegrationTest {
     @Test
     void testDeleteRoomDoesNotExists() {
         assertThrows(HttpClientErrorException.NotFound.class, () -> api.deleteRoom(1L));
+    }
+
+    @Test
+    void testUpdateRoomSuccess() {
+        var room = roomRepository.saveAndFlush(newRoomBuilder().build());
+        var updateRoomDto = new UpdateRoomDTO().name(room.getName() + "_").seats(room.getSeats() + 1);
+
+        api.updateRoom(room.getId(), updateRoomDto);
+
+        var updatedRoom = roomRepository.findById(room.getId()).orElseThrow();
+        assertEquals(updateRoomDto.getName(), updatedRoom.getName());
+        assertEquals(updateRoomDto.getSeats(), updatedRoom.getSeats());
+    }
+
+    @Test
+    void testUpdateRoomDoesNotExists() {
+        var updateRoomDto = new UpdateRoomDTO().name("_").seats(1);
+        assertThrows(HttpClientErrorException.NotFound.class, () -> api.updateRoom(1L, updateRoomDto));
+    }
+
+    @Test
+    void testUpdateRoomValidationError() {
+        var updateRoomDto = new UpdateRoomDTO().name(null).seats(1);
+        assertThrows(HttpClientErrorException.UnprocessableEntity.class, () -> api.updateRoom(1L, updateRoomDto));
     }
 
 }
