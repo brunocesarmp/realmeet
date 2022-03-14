@@ -20,4 +20,9 @@ public final class ResponseEntityUtils {
         return ResponseEntity.notFound().build();
     }
 
+    public static ResponseEntity<Void> noContent(Void aVoid) {
+        return ResponseEntity.noContent().build();
+    }
+
+
 }
