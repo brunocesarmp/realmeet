@@ -1,5 +1,7 @@
 package br.com.sw2you.realmeet.domain.entity;
 
+import static br.com.sw2you.realmeet.util.DateUtils.now;
+import static java.util.Objects.isNull;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -50,6 +52,19 @@ public class Allocation {
         this.endAt = builder.endAt;
         this.createdAt = builder.createdAt;
         this.updatedAt = builder.updatedAt;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        if (isNull(createdAt)) {
+            createdAt = now();
+        }
+        updatedAt = createdAt;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt = now();
     }
 
     public static Builder builder() {

@@ -24,6 +24,10 @@ public class Employee {
         this.email = builder.email;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getName() {
         return name;
     }
@@ -61,7 +65,7 @@ public class Employee {
                 .toString();
     }
 
-    public final class Builder {
+    public static final class Builder {
         private String name;
         private String email;
 
