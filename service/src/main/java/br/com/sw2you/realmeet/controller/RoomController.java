@@ -18,31 +18,31 @@ import org.springframework.web.bind.annotation.RestController;
 public class RoomController implements RoomsApi {
 
     private final Executor controllersExecutor;
-    private final RoomService roomService;
+    private final RoomService service;
 
-    public RoomController(Executor controllersExecutor, RoomService roomService) {
+    public RoomController(Executor controllersExecutor, RoomService service) {
         this.controllersExecutor = controllersExecutor;
-        this.roomService = roomService;
+        this.service = service;
     }
 
     @Override
     public CompletableFuture<ResponseEntity<RoomDTO>> getRoom(Long id) {
-        return supplyAsync(() -> roomService.getRoom(id), controllersExecutor).thenApply(ResponseEntityUtils::ok);
+        return supplyAsync(() -> service.getRoom(id), controllersExecutor).thenApply(ResponseEntityUtils::ok);
     }
 
     @Override
     public CompletableFuture<ResponseEntity<RoomDTO>> createRoom(CreateRoomDTO createRoomDTO) {
-        return supplyAsync(() -> roomService.createRoom(createRoomDTO), controllersExecutor).thenApply(ResponseEntityUtils::created);
+        return supplyAsync(() -> service.createRoom(createRoomDTO), controllersExecutor).thenApply(ResponseEntityUtils::created);
     }
 
     @Override
     public CompletableFuture<ResponseEntity<Void>> deleteRoom(Long id) {
-        return runAsync(() -> roomService.deleteRoom(id), controllersExecutor).thenApply(ResponseEntityUtils::noContent);
+        return runAsync(() -> service.deleteRoom(id), controllersExecutor).thenApply(ResponseEntityUtils::noContent);
     }
 
     @Override
     public CompletableFuture<ResponseEntity<Void>> updateRoom(Long id, UpdateRoomDTO updateRoomDTO) {
-        return runAsync(() -> roomService.updateRoom(id, updateRoomDTO), controllersExecutor).thenApply(ResponseEntityUtils::noContent);
+        return runAsync(() -> service.updateRoom(id, updateRoomDTO), controllersExecutor).thenApply(ResponseEntityUtils::noContent);
     }
 
 }

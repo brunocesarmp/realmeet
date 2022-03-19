@@ -16,7 +16,7 @@ import br.com.sw2you.realmeet.exception.InvalidRequestException;
 import br.com.sw2you.realmeet.validator.AllocationValidator;
 import br.com.sw2you.realmeet.validator.ValidationError;
 
-class AllocationValidatorUnitTest extends BaseUnitTest {
+class AllocationCreateValidatorUnitTest extends BaseUnitTest {
 
     private AllocationValidator victim;
 
