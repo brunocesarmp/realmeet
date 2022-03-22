@@ -78,7 +78,7 @@ public class AllocationService {
             throw new AllocationCannotBeUpdatedException();
         }
 
-        allocationValidator.validate(id, updateAllocationDTO);
+        allocationValidator.validate(id, allocation.getRoom().getId(), updateAllocationDTO);
 
         allocationRepository.updateAllocation(
                 id,
