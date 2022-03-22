@@ -1,6 +1,7 @@
 package br.com.sw2you.realmeet.integration;
 
 import static br.com.sw2you.realmeet.util.DateUtils.now;
+import static br.com.sw2you.realmeet.util.TestConstants.*;
 import static br.com.sw2you.realmeet.util.TestDataCreator.*;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
@@ -96,6 +97,41 @@ class AllocationApiIntegrationTest extends BaseIntegrationTest {
                 HttpClientErrorException.NotFound.class,
                 () -> api.deleteAllocation(1L)
         );
+    }
+
+    @Test
+    void testUpdateAllocationSuccess() {
+        var room = roomRepository.saveAndFlush(newRoomBuilder().build());
+        var allocation = allocationRepository.saveAndFlush(newAllocationBuilder(room).build());
+        var updateAllocationDto = newUpdatedAllocationDto()
+                .subject(DEFAULT_ALLOCATION_SUBJECT + "-")
+                .startAt(DEFAULT_ALLOCATION_START_AT.plusDays(1))
+                .endAt(DEFAULT_ALLOCATION_END_AT.plusDays(1));
+
+        api.updateAllocation(allocation.getId(), updateAllocationDto);
+
+        var updatedAllocation = allocationRepository.findById(allocation.getId()).orElseThrow();
+
+        assertEquals(updatedAllocation.getSubject(), updateAllocationDto.getSubject());
+        assertTrue(updatedAllocation.getStartAt().isEqual(updateAllocationDto.getStartAt()));
+        assertTrue(updatedAllocation.getEndAt().isEqual(updateAllocationDto.getEndAt()));
+    }
+
+    @Test
+    void testUpdateAllocationDoesNotExists() {
+        assertThrows(
+                HttpClientErrorException.NotFound.class,
+                () -> api.updateAllocation(1L, newUpdatedAllocationDto()));
+    }
+
+    @Test
+    void testUpdateRoomValidationError() {
+        var room = roomRepository.saveAndFlush(newRoomBuilder().build());
+        var allocation = allocationRepository.saveAndFlush(newAllocationBuilder(room).build());
+
+        assertThrows(
+                HttpClientErrorException.UnprocessableEntity.class,
+                () -> api.updateAllocation(allocation.getId(), newUpdatedAllocationDto().subject(null)));
     }
 
 }
