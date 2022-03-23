@@ -11,6 +11,8 @@ paths:
       operationId: createRoom
       tags:
         - room
+      parameters:
+        - $ref: '#/components/parameters/apiKey'
       requestBody:
         content:
           application/json:
@@ -34,6 +36,7 @@ paths:
       tags:
         - room
       parameters:
+        - $ref: '#/components/parameters/apiKey'
         - name: id
           in: path
           required: true
@@ -57,6 +60,7 @@ paths:
       tags:
         - room
       parameters:
+        - $ref: '#/components/parameters/apiKey'
         - name: id
           in: path
           required: true
@@ -76,6 +80,7 @@ paths:
       tags:
         - room
       parameters:
+        - $ref: '#/components/parameters/apiKey'
         - name: id
           in: path
           required: true
@@ -103,6 +108,8 @@ paths:
       operationId: createAllocation
       tags:
         - allocation
+      parameters:
+        - $ref: '#/components/parameters/apiKey'
       requestBody:
         content:
           application/json:
@@ -127,6 +134,7 @@ paths:
       tags:
         - allocation
       parameters:
+        - $ref: '#/components/parameters/apiKey'
         - name: employeeEmail
           in: query
           description: Email of the employee
@@ -170,6 +178,7 @@ paths:
       tags:
         - allocation
       parameters:
+        - $ref: '#/components/parameters/apiKey'
         - name: id
           in: path
           required: true
@@ -191,6 +200,7 @@ paths:
       tags:
         - allocation
       parameters:
+        - $ref: '#/components/parameters/apiKey'
         - name: id
           in: path
           required: true
@@ -316,3 +326,11 @@ components:
       description: The page of records to fetch (0 index based)
       schema:
         type: integer
+
+    apiKey:
+      name: api-key
+      in: header
+      description: The API Key to authenticate the request
+      required: true
+      schema:
+        type: string

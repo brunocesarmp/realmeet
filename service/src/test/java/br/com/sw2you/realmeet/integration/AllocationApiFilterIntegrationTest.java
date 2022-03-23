@@ -46,7 +46,7 @@ class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
         var allocation2 = allocationRepository.saveAndFlush(newAllocationBuilder(room).subject(DEFAULT_ALLOCATION_SUBJECT + 2).build());
         var allocation3 = allocationRepository.saveAndFlush(newAllocationBuilder(room).subject(DEFAULT_ALLOCATION_SUBJECT + 3).build());
 
-        var allocationDtoList = api.listAllocations(null, null, null, null, null, null, null);
+        var allocationDtoList = api.listAllocations(TEST_CLIENT_API_KEY, null, null, null, null, null, null, null);
 
         assertEquals(3, allocationDtoList.size());
         assertEquals(allocation1.getSubject(), allocationDtoList.get(0).getSubject());
@@ -63,7 +63,7 @@ class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
         var allocation2 = allocationRepository.saveAndFlush(newAllocationBuilder(roomA).build());
         allocationRepository.saveAndFlush(newAllocationBuilder(roomB).build());
 
-        var allocationDtoList = api.listAllocations(null, roomA.getId(), null, null, null, null, null);
+        var allocationDtoList = api.listAllocations(TEST_CLIENT_API_KEY, null, roomA.getId(), null, null, null, null, null);
 
         assertEquals(2, allocationDtoList.size());
         assertEquals(allocation1.getId(), allocationDtoList.get(0).getId());
@@ -80,7 +80,7 @@ class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
         var allocation2 = allocationRepository.saveAndFlush(newAllocationBuilder(room).employee(employee1).build());
         allocationRepository.saveAndFlush(newAllocationBuilder(room).employee(employee2).build());
 
-        var allocationDtoList = api.listAllocations(employee1.getEmail(), null, null, null, null, null, null);
+        var allocationDtoList = api.listAllocations(TEST_CLIENT_API_KEY, employee1.getEmail(), null, null, null, null, null, null);
 
         assertEquals(2, allocationDtoList.size());
         assertEquals(allocation1.getId(), allocationDtoList.get(0).getId());
@@ -112,7 +112,7 @@ class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
                         .endAt(baseEndAt.plusDays(3).plusHours(1))
                         .build());
 
-        var allocationDtoList = api.listAllocations(null, null,
+        var allocationDtoList = api.listAllocations(TEST_CLIENT_API_KEY, null, null,
                 baseStartAt.toLocalDate(), baseEndAt.toLocalDate(), null, null, null);
 
         assertEquals(2, allocationDtoList.size());
@@ -125,10 +125,10 @@ class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
         persistAllocations(15);
         ReflectionTestUtils.setField(allocationService, "maxLimit", 10);
 
-        var allocationListPage1 = api.listAllocations(null, null, null, null, null, null, 0);
+        var allocationListPage1 = api.listAllocations(TEST_CLIENT_API_KEY, null, null, null, null, null, null, 0);
         assertEquals(10, allocationListPage1.size());
 
-        var allocationListPage2 = api.listAllocations(null, null, null, null, null, null, 1);
+        var allocationListPage2 = api.listAllocations(TEST_CLIENT_API_KEY, null, null, null, null, null, null, 1);
         assertEquals(5, allocationListPage2.size());
     }
 
@@ -137,20 +137,20 @@ class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
         persistAllocations(25);
         ReflectionTestUtils.setField(allocationService, "maxLimit", 50);
 
-        var allocationListPage1 = api.listAllocations(null, null, null, null, null, 10, 0);
+        var allocationListPage1 = api.listAllocations(TEST_CLIENT_API_KEY, null, null, null, null, null, 10, 0);
         assertEquals(10, allocationListPage1.size());
 
-        var allocationListPage2 = api.listAllocations(null, null, null, null, null, 10, 1);
+        var allocationListPage2 = api.listAllocations(TEST_CLIENT_API_KEY, null, null, null, null, null, 10, 1);
         assertEquals(10, allocationListPage2.size());
 
-        var allocationListPage3 = api.listAllocations(null, null, null, null, null, 10, 2);
+        var allocationListPage3 = api.listAllocations(TEST_CLIENT_API_KEY, null, null, null, null, null, 10, 2);
         assertEquals(5, allocationListPage3.size());
     }
 
     @Test
     void testFilterAllocationOrderByStartAtDesc() {
         var allocationList = persistAllocations(3);
-        var allocationDtoList = api.listAllocations(null, null, null, null, "-startAt", null, null);
+        var allocationDtoList = api.listAllocations(TEST_CLIENT_API_KEY, null, null, null, null, "-startAt", null, null);
 
         assertEquals(3, allocationDtoList.size());
         assertEquals(allocationList.get(2).getId(), allocationDtoList.get(0).getId());
@@ -162,7 +162,7 @@ class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
     void testFilterAllocationOrderByInvalidField() {
         assertThrows(
                 HttpClientErrorException.UnprocessableEntity.class,
-                () -> api.listAllocations(null, null, null, null, "invalid", null, null)
+                () -> api.listAllocations(TEST_CLIENT_API_KEY, null, null, null, null, "invalid", null, null)
         );
     }
 
