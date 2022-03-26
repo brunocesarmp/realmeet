@@ -1,4 +1,4 @@
-package br.com.sw2you.realmeet.email.model;
+package br.com.sw2you.realmeet.email;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -16,7 +16,7 @@ public class EmailInfo {
     private final String subject;
     private final List<Attachment> attachments;
     private final String template;
-    private final Map<String, String> templateData;
+    private final Map<String, Object> templateData;
 
     private EmailInfo(Builder builder) {
         this.from = builder.from;
@@ -61,7 +61,7 @@ public class EmailInfo {
         return template;
     }
 
-    public Map<String, String> getTemplateData() {
+    public Map<String, Object> getTemplateData() {
         return templateData;
     }
 
@@ -101,7 +101,7 @@ public class EmailInfo {
         private String subject;
         private List<Attachment> attachments;
         private String template;
-        private Map<String, String> templateData;
+        private Map<String, Object> templateData;
 
         private Builder() {
         }
@@ -141,7 +141,7 @@ public class EmailInfo {
             return this;
         }
 
-        public Builder templateData(Map<String, String> templateData) {
+        public Builder templateData(Map<String, Object> templateData) {
             this.templateData = templateData;
             return this;
         }
@@ -149,7 +149,6 @@ public class EmailInfo {
         public EmailInfo build() {
             return new EmailInfo(this);
         }
-
 
     }
 

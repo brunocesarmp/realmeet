@@ -1,4 +1,4 @@
-package br.com.sw2you.realmeet.email.model;
+package br.com.sw2you.realmeet.email;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
