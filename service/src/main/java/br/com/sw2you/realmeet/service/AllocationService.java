@@ -34,17 +34,20 @@ public class AllocationService {
     private final RoomRepository roomRepository;
     private final AllocationRepository allocationRepository;
     private final AllocationValidator allocationValidator;
+    private final NotificationService notificationService;
     private final AllocationMapper allocationMapper;
     private final int maxLimit;
 
     public AllocationService(RoomRepository roomRepository,
                              AllocationRepository allocationRepository,
                              AllocationValidator allocationValidator,
+                             NotificationService notificationService,
                              AllocationMapper allocationMapper,
                              @Value(ALLOCATION_MAX_FILTER_LIMITS) int maxLimit) {
         this.roomRepository = roomRepository;
         this.allocationRepository = allocationRepository;
         this.allocationValidator = allocationValidator;
+        this.notificationService = notificationService;
         this.allocationMapper = allocationMapper;
         this.maxLimit = maxLimit;
     }
@@ -57,6 +60,7 @@ public class AllocationService {
 
         var allocation = allocationMapper.fromCreateAllocationDtoToEntity(createAllocationDTO, room);
         allocationRepository.save(allocation);
+        notificationService.notifyAllocationCreated(allocation);
         return allocationMapper.fromEntityToDto(allocation);
     }
 
@@ -68,6 +72,7 @@ public class AllocationService {
         }
 
         allocationRepository.delete(allocation);
+        notificationService.notifyAllocationDeleted(allocation);
     }
 
     @Transactional
@@ -86,6 +91,8 @@ public class AllocationService {
                 updateAllocationDTO.getStartAt(),
                 updateAllocationDTO.getEndAt()
         );
+
+        notificationService.notifyAllocationUpdated(getAllocationOrThrow(id));
     }
 
     public List<AllocationDTO> listAllocations(String employeeEmail, Long roomId, LocalDate startAt, LocalDate endAt, String orderBy, Integer limit, Integer page) {
