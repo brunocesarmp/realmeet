@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import br.com.sw2you.realmeet.core.BaseIntegrationTest;
-import br.com.sw2you.realmeet.email.EmailInfo;
+import br.com.sw2you.realmeet.email.model.EmailInfo;
 import br.com.sw2you.realmeet.email.EmailSender;
 import java.util.List;
 import java.util.Map;

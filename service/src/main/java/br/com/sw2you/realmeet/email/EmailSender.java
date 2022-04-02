@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.thymeleaf.ITemplateEngine;
 import org.thymeleaf.context.Context;
 
+import br.com.sw2you.realmeet.email.model.Attachment;
+import br.com.sw2you.realmeet.email.model.EmailInfo;
 import br.com.sw2you.realmeet.exception.EmailSendingException;
 import java.io.IOException;
 import java.util.List;
