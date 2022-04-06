@@ -4,7 +4,8 @@ public enum TemplateType {
 
     ALLOCATION_CREATED("allocationCreated"),
     ALLOCATION_UPDATED("allocationUpdated"),
-    ALLOCATION_DELETED("allocationDeleted");
+    ALLOCATION_DELETED("allocationDeleted"),
+    ALLOCATION_REPORT("allocationReport");
 
     final String templateName;
 
