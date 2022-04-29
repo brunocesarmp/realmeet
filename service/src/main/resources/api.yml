@@ -103,31 +103,6 @@ paths:
           $ref: '#/components/responses/UnprocessableEntity'
 
   /allocations:
-    post:
-      summary: 'Creates a akkicatuib'
-      operationId: createAllocation
-      tags:
-        - allocation
-      parameters:
-        - $ref: '#/components/parameters/apiKey'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateAllocationDTO'
-        required: true
-      responses:
-        201:
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AllocationDTO'
-        404:
-          description: Not Found
-        422:
-          $ref: '#/components/responses/UnprocessableEntity'
-
     get:
       summary: 'Lists allocations'
       operationId: listAllocations
@@ -170,6 +145,31 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/AllocationDTO'
+
+    post:
+      summary: 'Creates a allocation'
+      operationId: createAllocation
+      tags:
+        - allocation
+      parameters:
+        - $ref: '#/components/parameters/apiKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAllocationDTO'
+        required: true
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationDTO'
+        404:
+          description: Not Found
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
 
   /allocations/{id}:
     delete:
@@ -219,6 +219,45 @@ paths:
           description: 'Update Successfully'
         404:
           description: Not Found
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+  /reports/allocation:
+    post:
+      tags:
+        - report
+      summary: Generates the allocation report
+      operationId: createAllocationReport
+      parameters:
+        - $ref: '#/components/parameters/apiKey'
+        - name: email
+          in: query
+          description: The e-mail to send the report
+          required: true
+          schema:
+            type: string
+        - name: dateFrom
+          in: query
+          description: Start date to filter
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: dateTo
+          in: query
+          description: End date to filter
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: reportFormat
+          in: query
+          description: Report format. Can be 'PDF' or 'XML'. Defaults to 'PDF'
+          required: false
+          schema:
+            type: string
+      responses:
+        201:
+          description: Created
         422:
           $ref: '#/components/responses/UnprocessableEntity'
 

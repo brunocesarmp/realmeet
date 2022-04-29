@@ -1,9 +1,13 @@
 package br.com.sw2you.realmeet.report.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class AllocationReportData extends AbstractReportData {
+
     private final LocalDate dateFrom;
     private final LocalDate dateTo;
 
@@ -37,10 +41,13 @@ public class AllocationReportData extends AbstractReportData {
 
     @Override
     public String toString() {
-        return "AllocationDataReport{dateFrom=" + dateFrom + ", dateTo=" + dateTo + '}';
+        return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
+                .append("dateFrom", dateFrom)
+                .append("dateTo", dateTo)
+                .toString();
     }
 
-    public static Builder newBuilder() {
+    public static Builder builder() {
         return new Builder();
     }
 
@@ -70,4 +77,5 @@ public class AllocationReportData extends AbstractReportData {
             return new AllocationReportData(this);
         }
     }
+
 }

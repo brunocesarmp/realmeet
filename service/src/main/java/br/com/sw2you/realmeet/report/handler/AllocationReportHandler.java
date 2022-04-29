@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AllocationReportHandler extends AbstractReportHandler<Allocation, AllocationReportData> {
+
     private static final String PARAM_DATE_FROM = "DateFromFilter";
     private static final String PARAM_DATE_TO = "DateToFilter";
     private static final String FIELD_DATE_FROM = "DateFrom";
@@ -94,4 +95,5 @@ public class AllocationReportHandler extends AbstractReportHandler<Allocation, A
             }
         );
     }
+
 }

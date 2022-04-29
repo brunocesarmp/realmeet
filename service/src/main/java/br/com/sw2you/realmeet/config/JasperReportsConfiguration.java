@@ -11,6 +11,7 @@ import org.springframework.core.io.ClassPathResource;
 
 @Configuration
 public class JasperReportsConfiguration {
+
     private static final String JASPER_FOLDER = "/jasper";
 
     @Bean
@@ -27,4 +28,5 @@ public class JasperReportsConfiguration {
             throw new RuntimeException(e);
         }
     }
+
 }

@@ -1,8 +1,12 @@
 package br.com.sw2you.realmeet.report.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import java.util.Objects;
 
 public abstract class AbstractReportData {
+
     private final String email;
 
     protected AbstractReportData(String email) {
@@ -28,6 +32,9 @@ public abstract class AbstractReportData {
 
     @Override
     public String toString() {
-        return "AbstractDataReport{email='" + email + '\'' + '}';
+        return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
+                .append("email", email)
+                .toString();
     }
+
 }

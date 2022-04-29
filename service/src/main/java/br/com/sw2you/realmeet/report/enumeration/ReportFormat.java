@@ -3,6 +3,7 @@ package br.com.sw2you.realmeet.report.enumeration;
 import java.util.Optional;
 
 public enum ReportFormat {
+
     PDF("application/pdf"),
     XML("application/xml");
 

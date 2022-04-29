@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ReportHandlerResolver {
+
     private final Set<AbstractReportHandler> reportHandlers;
     private final Map<ReportHandlerType, AbstractReportHandler> reportHandlersMap;
 

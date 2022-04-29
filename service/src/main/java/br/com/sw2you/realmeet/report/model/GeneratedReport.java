@@ -1,11 +1,15 @@
 package br.com.sw2you.realmeet.report.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import br.com.sw2you.realmeet.email.TemplateType;
 import br.com.sw2you.realmeet.report.enumeration.ReportFormat;
 import java.util.Arrays;
 import java.util.Objects;
 
 public class GeneratedReport {
+
     private final byte[] bytes;
     private final ReportFormat reportFormat;
     private final String fileName;
@@ -13,11 +17,11 @@ public class GeneratedReport {
     private final TemplateType templateType;
 
     private GeneratedReport(Builder builder) {
-        bytes = builder.bytes;
-        reportFormat = builder.reportFormat;
-        fileName = builder.fileName;
-        email = builder.email;
-        templateType = builder.templateType;
+        this.bytes = builder.bytes;
+        this.reportFormat = builder.reportFormat;
+        this.fileName = builder.fileName;
+        this.email = builder.email;
+        this.templateType = builder.templateType;
     }
 
     public byte[] getBytes() {
@@ -46,11 +50,11 @@ public class GeneratedReport {
         if (o == null || getClass() != o.getClass()) return false;
         GeneratedReport that = (GeneratedReport) o;
         return (
-            Arrays.equals(bytes, that.bytes) &&
-            reportFormat == that.reportFormat &&
-            Objects.equals(fileName, that.fileName) &&
-            Objects.equals(email, that.email) &&
-            templateType == that.templateType
+                Arrays.equals(bytes, that.bytes) &&
+                        reportFormat == that.reportFormat &&
+                        Objects.equals(fileName, that.fileName) &&
+                        Objects.equals(email, that.email) &&
+                        templateType == that.templateType
         );
     }
 
@@ -63,25 +67,16 @@ public class GeneratedReport {
 
     @Override
     public String toString() {
-        return (
-            "GeneratedReport{" +
-            "bytes=" +
-            Arrays.toString(bytes) +
-            ", reportFormat=" +
-            reportFormat +
-            ", fileName='" +
-            fileName +
-            '\'' +
-            ", email='" +
-            email +
-            '\'' +
-            ", templateType=" +
-            templateType +
-            '}'
-        );
+        return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
+                .append("bytes", bytes)
+                .append("reportFormat", reportFormat)
+                .append("fileName", fileName)
+                .append("email", email)
+                .append("templateType", templateType)
+                .toString();
     }
 
-    public static Builder newBuilder() {
+    public static Builder builder() {
         return new Builder();
     }
 
@@ -92,7 +87,8 @@ public class GeneratedReport {
         private String email;
         private TemplateType templateType;
 
-        private Builder() {}
+        private Builder() {
+        }
 
         public Builder bytes(byte[] bytes) {
             this.bytes = bytes;
@@ -123,4 +119,5 @@ public class GeneratedReport {
             return new GeneratedReport(this);
         }
     }
+
 }

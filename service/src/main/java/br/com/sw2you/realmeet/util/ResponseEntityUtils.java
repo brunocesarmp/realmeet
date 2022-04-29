@@ -24,5 +24,4 @@ public final class ResponseEntityUtils {
         return ResponseEntity.noContent().build();
     }
 
-
 }

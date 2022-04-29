@@ -1,7 +1,7 @@
 package br.com.sw2you.realmeet.service;
 
 import static br.com.sw2you.realmeet.domain.entity.Allocation.SORTABLE_FIELDS;
-import static br.com.sw2you.realmeet.util.Constants.ALLOCATION_MAX_FILTER_LIMITS;
+import static br.com.sw2you.realmeet.util.Constants.ALLOCATIONS_MAX_FILTER_LIMIT;
 import static br.com.sw2you.realmeet.util.DateUtils.DEFAULT_TIMEZONE;
 import static br.com.sw2you.realmeet.util.DateUtils.now;
 import static br.com.sw2you.realmeet.util.PageUtils.newPageable;
@@ -43,7 +43,7 @@ public class AllocationService {
                              AllocationValidator allocationValidator,
                              NotificationService notificationService,
                              AllocationMapper allocationMapper,
-                             @Value(ALLOCATION_MAX_FILTER_LIMITS) int maxLimit) {
+                             @Value(ALLOCATIONS_MAX_FILTER_LIMIT) int maxLimit) {
         this.roomRepository = roomRepository;
         this.allocationRepository = allocationRepository;
         this.allocationValidator = allocationValidator;
